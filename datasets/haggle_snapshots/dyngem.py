@@ -70,9 +70,9 @@ def get_embedding(encoder, graph_name, output_name):
 
 def build_model():
     #Main Function
-    embedding_dim = 0  # 1/4 of number of nodes
+    embedding_dim = 32  # 1/4 of number of nodes
     # Encoding Layer Dims
-    encoding_dim = []
+    encoding_dim =  [44, 66, 88, 91]
     # Decoding Layer Dims
     decoding_dim = [] 
     encoding_layers = []
@@ -96,17 +96,14 @@ def build_model():
 
         if count == 1 :
             # Create Model from Scratch
-            embedding_dim = (int) (N/4) # 1/4 
-
-            # Embedding Layers
-            i =  embedding_dim
+            # embedding_dim = (int) (N/4) # 1/4 
+            # # Embedding Layers
+            # i =  embedding_dim
         
-            while ((i+embedding_dim) < N):
-                i = i + embedding_dim
-                encoding_dim.append(i)
-            
-            encoding_dim.append(N)
-
+            # while ((i+embedding_dim) < N):
+            #     i = i + embedding_dim
+            #     encoding_dim.append(i)         
+            # encoding_dim.append(N)
             decoding_dim = encoding_dim
             encoding_dim = encoding_dim[::-1]
             
@@ -160,6 +157,9 @@ def build_model():
 
             if prev_N == N:  
                 prev_model = load_model(prev_model_name)
+                # No need to add layers if number of nodes are same but just fit the new dataset
+                prev_model.compile(loss=loss_function, optimizer='adam', metrics=['mae','acc'])
+                prev_model.fit(adj_mat,adj_mat,epochs=dynamic_model_build_epochs_number)
                 prev_model.save(curr_model_name)
                 continue
 

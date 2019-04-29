@@ -1,6 +1,7 @@
 import numpy as np
 from sklearn import metrics
 import networkx as nx
+from sklearn.model_selection import train_test_split
 from keras.models import Model, Sequential, load_model
 import matplotlib.pyplot as plt
 
@@ -13,6 +14,12 @@ N = g.number_of_nodes()
 
 
 final_model = load_model("models/prev_model_8.h5")
+
+adj_mat_full = nx.adjacency_matrix(g).toarray()
+
+test_ratio = 0.30
+train_set, test_edges = train_test_split(g.edges(), test_size=test_ratio)
+g.remove_edges_from(test_edges)
 
 adj_mat = nx.adjacency_matrix(g).toarray()
 
@@ -27,7 +34,7 @@ y_act = []
 
 for x in range(0, rows):
     for y in range(0, cols):
-        y_act.append(adj_mat[x,y])
+        y_act.append(adj_mat_full[x,y])
 
 pred =  []   
 for x in range(0, rows):

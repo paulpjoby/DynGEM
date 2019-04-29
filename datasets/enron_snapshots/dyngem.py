@@ -11,7 +11,7 @@ activation_fn = 'relu'
 activation_fn_embedding_layer='relu'
 loss_function = 'binary_crossentropy'
 primary_model_build_epochs_number = 50
-dynamic_model_build_epochs_number = 10
+dynamic_model_build_epochs_number = 20
 
 #Loss Function for preserving First and Second Order
 def build_reconstruction_loss(beta):
