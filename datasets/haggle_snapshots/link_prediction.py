@@ -15,13 +15,13 @@ N = g.number_of_nodes()
 
 final_model = load_model("models/prev_model_7.h5")
 
-adj_mat_full = nx.adjacency_matrix(g).toarray()
-
-test_ratio = 0.50
-train_set, test_edges = train_test_split(g.edges(), test_size=test_ratio)
-g.remove_edges_from(test_edges)
-
 adj_mat = nx.adjacency_matrix(g).toarray()
+
+# test_ratio = 0.50
+# train_set, test_edges = train_test_split(g.edges(), test_size=test_ratio)
+# g.remove_edges_from(test_edges)
+
+# adj_mat = nx.adjacency_matrix(g).toarray()
 
 reconstructed_adj = final_model.predict(adj_mat)
 
@@ -34,7 +34,7 @@ y_act = []
 
 for x in range(0, rows):
     for y in range(0, cols):
-        y_act.append(adj_mat_full[x,y])
+        y_act.append(adj_mat[x,y])
 
 pred =  []   
 for x in range(0, rows):

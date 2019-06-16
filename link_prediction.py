@@ -12,9 +12,9 @@ g = nx.read_gpickle(graph_file)
 np.set_printoptions(threshold=np.nan)
 N = g.number_of_nodes()
 
-test_ratio = 0.15
-train_set, test_edges = train_test_split(g.edges(), test_size=test_ratio)
-g.remove_edges_from(test_edges)
+# test_ratio = 0.15
+# train_set, test_edges = train_test_split(g.edges(), test_size=test_ratio)
+# g.remove_edges_from(test_edges)
 
 final_model = load_model("models/prev_model_7.h5")
 

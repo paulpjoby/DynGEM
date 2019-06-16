@@ -187,7 +187,7 @@ def build_model():
 
                 #Adding the Existing Layers
                 model_api = prev_model.model
-                skip_input_layer=0 # This is to Skip the Previous input Layer
+                skip_input_layer=0 # This is a flag to Skip the Previous input Layer
                 for layer in model_api.layers:
                     if skip_input_layer == 0:
                         skip_input_layer = 1

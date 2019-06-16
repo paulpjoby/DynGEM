@@ -1,18 +1,18 @@
 import networkx as nx
 import keras
 from keras.models import Model, Sequential, load_model
-from keras.layers  import Dense, Input, Embedding, Reshape,  Lambda
+from keras.layers  import Dense, Input, Embedding, Reshape,  Lambda, Dropout
 from keras import backend as K, regularizers
 import numpy as np
 from functools import reduce
 
 dynamic_series = []
 activation_fn = 'relu'
-activation_fn_embedding_layer='sigmoid'
+activation_fn_embedding_layer='relu'
 loss_function = 'binary_crossentropy'
 
-primary_model_build_epochs_number = 5
-dynamic_model_build_epochs_number = 2
+primary_model_build_epochs_number = 100
+dynamic_model_build_epochs_number = 10
 
 #Loss Function for preserving First and Second Order
 def build_reconstruction_loss(beta):
@@ -132,6 +132,8 @@ def build_model():
                 i = i + 1
                 layer = Dense(dim, activation=activation_fn, kernel_regularizer=regularizers.l2(l2_param), name='encoding-layer-{}'.format(i))
                 model.add(layer)
+                layer_drop=Dropout(0.2)
+                model.add(layer_drop)
 
             
             model.add(Dense(embedding_dim, activation=activation_fn_embedding_layer, kernel_regularizer=regularizers.l2(l2_param), name='embedding-layer'))
@@ -142,6 +144,8 @@ def build_model():
                 i = i + 1
                 layer = Dense(dim, activation=activation_fn, kernel_regularizer=regularizers.l2(l2_param), name='decoding-layer-{}'.format(i))
                 model.add(layer)
+                layer_drop=Dropout(0.2)
+                model.add(layer_drop)
 
 
 

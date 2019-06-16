@@ -2,11 +2,11 @@ import matplotlib.pyplot as plt
 import pandas as pd 
 
 #DynGEM Vs SDNE
-index = ['Haggle', 'Hep-th', 'MIT']
+index = ['Haggle', 'Hep-th', 'Reality Mining']
 sdne = [0.9, 0.58, 0.81]	
 dyngem = [0.83 , 0.7, 0.86 ]
 
-df = pd.DataFrame({'SDNE':sdne, 'DynGEM':dyngem}, index = index)
+df = pd.DataFrame({'SDNE':sdne, 'Dynamic Graph Embedding':dyngem}, index = index)
 ax = df.plot.bar(rot = 0, width = 0.75)
 plt.xlabel('Datasets')
 plt.ylabel('AUC')
@@ -23,7 +23,7 @@ y3 = [0.81, 0.85, 0.85, 0.82]
 xi = [i for i in range(0,len(x))]
 plt.plot(xi, y1, label = 'Haggle')
 plt.plot(xi, y2, label = 'Hep-th')
-plt.plot(xi, y3, label = 'MIT')
+plt.plot(xi, y3, label = 'Reality Mining')
 # axes.set_xlim([8,64])
 axes.set_ylim([0,1])
 plt.xticks(xi,x)
@@ -44,7 +44,7 @@ y3 = [0.86, 0.82, 0.80, 0.86]
 xi = [i for i in range(0,len(x))]
 plt.plot(xi, y1, label = 'Haggle')
 plt.plot(xi, y2, label = 'Hep-th')
-plt.plot(xi, y3, label = 'MIT')
+plt.plot(xi, y3, label = 'Reality Mining')
 # axes.set_xlim([8,64])
 axes.set_ylim([0,1])
 plt.xticks(xi,x)
@@ -66,7 +66,7 @@ y3 = [0.82, 0.80, 0.88, 0.86]
 xi = [i for i in range(0,len(x))]
 plt.plot(xi, y1, label = 'Haggle')
 plt.plot(xi, y2, label = 'Hep-th')
-plt.plot(xi, y3, label = 'MIT')
+plt.plot(xi, y3, label = 'Reality Mining')
 
 # axes.set_xlim([8,64])
 axes.set_ylim([0,1])

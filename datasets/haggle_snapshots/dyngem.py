@@ -10,6 +10,7 @@ dynamic_series = []
 activation_fn = 'relu'
 activation_fn_embedding_layer='relu'
 loss_function = 'binary_crossentropy'
+dynamic_model_build_epochs_number = 300
 
 #Loss Function for preserving First and Second Order
 def build_reconstruction_loss(beta):
@@ -70,9 +71,9 @@ def get_embedding(encoder, graph_name, output_name):
 
 def build_model():
     #Main Function
-    embedding_dim = 32  # 1/4 of number of nodes
+    embedding_dim = 0 # 1/4 of number of nodes
     # Encoding Layer Dims
-    encoding_dim =  [44, 66, 88, 91]
+    encoding_dim =  []
     # Decoding Layer Dims
     decoding_dim = [] 
     encoding_layers = []
@@ -96,14 +97,14 @@ def build_model():
 
         if count == 1 :
             # Create Model from Scratch
-            # embedding_dim = (int) (N/4) # 1/4 
-            # # Embedding Layers
-            # i =  embedding_dim
+            embedding_dim = (int) (N/4) # 1/4 
+            # Embedding Layers
+            i =  embedding_dim
         
-            # while ((i+embedding_dim) < N):
-            #     i = i + embedding_dim
-            #     encoding_dim.append(i)         
-            # encoding_dim.append(N)
+            while ((i+embedding_dim) < N):
+                i = i + embedding_dim
+                encoding_dim.append(i)         
+            encoding_dim.append(N)
             decoding_dim = encoding_dim
             encoding_dim = encoding_dim[::-1]
             
