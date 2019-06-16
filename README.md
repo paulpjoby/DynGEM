@@ -1,10 +1,10 @@
-#Dynamic Network Embedding
+# Dynamic Network Embedding
 - Btech S8 Project (2019)
-###System Specifications
+### System Specifications
 - Python 3.6
 - Operating Systems Tested : Windows 10 or Ubuntu 18.04 LTS
 
-###Packages
+### Packages
 - Babel 2.6.0
 - backcall 0.1.0
 - conda 4.6.8
